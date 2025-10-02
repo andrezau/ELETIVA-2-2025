@@ -8,7 +8,7 @@
 </head>
 <body> 
 <div class="container">
-<h1>Subtração</h1>
+<h1>Somar com IF</h1>
 <form method="post">
 <div class="row inline-row mb-3"><div class="col-md-4">
               <label for="valor1" class="form-label">Informe o primeiro valor:</label>
