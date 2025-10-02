@@ -4,13 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Exercício 17</title>
+  <title>Exercício 18</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
   <div class="container py-3">
-    <h1>Calcular Juros Simples</h1>
+    <h1>Calcular Juros Compostos</h1>
     <form method="post">
       <div class="row inline-row mb-3">
         <div class="col-md-3">
@@ -29,10 +29,10 @@
           <h4>Média dos valores:</h4>
           <?php
           if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $capital = $_POST['capital'];
+            $capital = $_POST['capital'];   
             $taxa = $_POST['taxa'];
             $periodo = $_POST['periodo'];
-            $juros = $capital * ($taxa/100) * $periodo;
+            $juros = $capital * (1 + $taxa/100) ** $periodo - $capital;
             echo "<p>Total em juros: " . number_format($juros, 2, ',', '.') . "</p>";
             echo "<p>Valor total: " . number_format($capital + $juros, 2, ',', '.') . "</p>";
           }
