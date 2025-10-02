@@ -4,42 +4,42 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Exercício 5</title>
+  <title>Exercício 17</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
   <div class="container py-3">
-    <h1>Média</h1>
+    <h1>Calcular Juros Simples</h1>
     <form method="post">
       <div class="row inline-row mb-3">
         <div class="col-md-3">
-          <label for="valor1" class="form-label">Nota P1:</label>
-          <input type="number" id="nota1" name="nota1" class="form-control" required="">
+          <label for="capital" class="form-label">Capital:</label>
+          <input type="number" id="capital" name="capital" class="form-control" step="0.01" required="">
         </div>
         <div class="col-md-3">
-          <label for="valor2" class="form-label">Nota P2:</label>
-          <input type="number" id="nota2" name="nota2" class="form-control" required="">
+          <label for="taxa" class="form-label">Taxa:</label>
+          <input type="number" id="taxa" name="taxa" class="form-control" step="0.01" required="">
         </div>
         <div class="col-md-3">
-          <label for="valor3" class="form-label">Nota P3:</label>
-          <input type="number" id="nota3" name="nota3" class="form-control" required="">
+          <label for="periodo" class="form-label">Período:</label>
+          <input type="number" id="periodo" name="periodo" class="form-control" required="">
         </div>
         <div class="col-md-3">
           <h4>Média dos valores:</h4>
           <?php
           if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $nota1 = $_POST['nota1'];
-            $nota2 = $_POST['nota2'];
-            $nota3 = $_POST['nota3'];
-            $media = ($nota1 + $nota2 + $nota3) / 3;
-            echo "Média Final: $media";
+            $capital = $_POST['capital'];
+            $taxa = $_POST['taxa'];
+            $periodo = $_POST['periodo'];
+            $juros = $capital * $taxa * $periodo;
+            echo "<p>Juros Simples: $juros</p>";
 
           }
           ?>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Enviar</button>
+      <button type="submit" class="btn btn-primary">Calcular</button>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
   </div>
