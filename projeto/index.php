@@ -9,6 +9,9 @@
 <body>
   <div class="container mt-5">
     <?php
+
+use function PHPSTORM_META\elementType;
+
         if(isset($_GET['cadastro'])){
             $cadastro = $_GET['cadastro'];
             if($cadastro){
@@ -18,10 +21,29 @@
                 echo '<p class="text-danger">Erro ao realizar o cadastro!</p>';
             }
         }
-
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+          require('conexao.php');
+          $email = $_POST['email'];
+          $senha = $_POST['senha'];
+          try{
+            $stmt = $pdo->prepare("SELECT * FROM usuario WHERE emailusu = ?");
+            $stmt->execute([$email]);
+            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+            if($usuario && password_verify($senha, $usuario['senhausu'])){
+                session_start();
+                $_SESSION['acesso'] = true;
+                $_SESSION['nome'] = $usuario['nomeusu'];
+                header('location: principal.php');
+            } else {
+              echo "<p class='text-danger'>Credenciais Inválidas!</p>";
+            }
+          } catch(\Exception $e){
+            echo "Erro: ".$e->getMessage();
+          }
+        }
     ?>
     <h2 class="mb-4">Acesso ao Sistema</h2>
-    <form action="/login" method="POST">
+    <form action="index.php" method="POST">
       <div class="col-4 mb-3">
         <label for="emailLogin" class="form-label">Email</label>
         <input type="email" class="form-control" id="emailLogin" name="email" placeholder="Digite seu email" required />

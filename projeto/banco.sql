@@ -19,6 +19,7 @@ USE `mydb` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`usuario` (
   `idusu` INT NOT NULL AUTO_INCREMENT,
+  `nomeusu` VARCHAR(255) NOT NULL,
   `emailusu` VARCHAR(255) NOT NULL,
   `senhausu` TEXT NOT NULL,
   PRIMARY KEY (`idusu`))
